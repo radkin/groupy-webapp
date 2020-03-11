@@ -1,3 +1,18 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { configure } from 'mobx'
+
+import ArtistList from './ArtistList'
+import uiState from './uiState'
+
+configure(true)
+
+ReactDOM.render(
+  <ArtistList uiState={uiState} />,
+  document.getElementById('root')
+)
+
+/*
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -10,3 +25,4 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+*/
