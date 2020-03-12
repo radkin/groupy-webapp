@@ -1,11 +1,11 @@
 import { extendObservable } from 'mobx'
-import artists from './artists'
+import getme from './getme'
 
 function UiState() {
 
   extendObservable(this, {
-    get artistData() {
-      return artists
+    get getmeData() {
+      return getme
     }
   })
 }

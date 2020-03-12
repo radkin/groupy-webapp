@@ -1,10 +1,7 @@
-// import ApolloClient, { createNetworkInterface } from 'apollo-client'
-
-// const networkInterface = createNetworkInterface({ uri: '/graphql' })
-
 import ApolloClient from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
+import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { setContext } from 'apollo-link-context';
 
 const dataIdFromObject = (result) => {
   if (result.id && result.__typename) {
@@ -14,21 +11,28 @@ const dataIdFromObject = (result) => {
   return null;
 }
 
+const token = '<TOKEN IN HERE>';
 
-// const client = new ApolloClient({
-//   networkInterface,
-//   dataIdFromObject,
-// })
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4000/graphql',
+  credentials: 'same-origin'
+});
+
+const authLink = setContext((_, { headers }) => {
+  // const token = localStorage.getItem('token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    }
+  }
+});
 
 const apolloClient = new ApolloClient({
-  link: new HttpLink({
-    uri: 'http://localhost:3000/graphql'
-  }),
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
   connectToDevTools: true,
   dataIdFromObject,
 })
 
 export default apolloClient
-
-// export default client

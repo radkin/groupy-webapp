@@ -2,13 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { configure } from 'mobx'
 
-import ArtistList from './ArtistList'
+import GetmeList from './GetmeList'
 import uiState from './uiState'
 
 configure(true)
 
 ReactDOM.render(
-  <ArtistList uiState={uiState} />,
+  <GetmeList uiState={uiState} />,
   document.getElementById('root')
 )
 
