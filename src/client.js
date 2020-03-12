@@ -3,6 +3,8 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 
+const token = process.env.REACT_APP_GROUPY_TOKEN;
+
 const dataIdFromObject = (result) => {
   if (result.id && result.__typename) {
     return result.__typename + result.id;
@@ -10,8 +12,6 @@ const dataIdFromObject = (result) => {
 
   return null;
 }
-
-const token = '<TOKEN IN HERE>';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
