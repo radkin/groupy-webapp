@@ -14,7 +14,10 @@ configure(true)
 function App() {
   return (
     <ScopedCssBaseline>
-      <Button variant="contained" color="primary">
+      <Button
+        color="primary"
+        variant="contained"
+      >
         Hello World
       </Button>
     </ScopedCssBaseline>
@@ -24,8 +27,8 @@ function App() {
 // 'response meta tag' for mobile compatibility
 const headElement =
   <meta
+    content="initial-scale=1, minimum-scale=1, width=device-width"
     name="viewport"
-    content="minimum-scale=1, initial-scale=1, width=device-width"
   />;
 
 /* DOM render tree */
