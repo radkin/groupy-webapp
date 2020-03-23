@@ -7,7 +7,7 @@ import uiState from './uiState'
 import Button from '@material-ui/core/Button';
 import * as serviceWorker from './serviceWorker';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
-import Demo from './demo';
+import Gdrawer from './gdrawer';
 
 configure(true)
 
@@ -47,7 +47,7 @@ ReactDOM.render(
 ReactDOM.render(<App />, document.getElementById('root'));
 serviceWorker.unregister();
 
-ReactDOM.render(<Demo />, document.querySelector('#root'));
+ReactDOM.render(<Gdrawer />, document.querySelector('#root'));
 
 /*
 import React from 'react';

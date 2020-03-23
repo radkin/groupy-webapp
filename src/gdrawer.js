@@ -22,7 +22,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -115,7 +114,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            { /* text for our header */ }
           </Typography>
         </Toolbar>
       </AppBar>
