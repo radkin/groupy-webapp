@@ -4,26 +4,10 @@ import { configure } from 'mobx'
 
 import GetmeList from './GetmeList'
 import uiState from './uiState'
-import Button from '@material-ui/core/Button';
 import * as serviceWorker from './serviceWorker';
-import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 import Gdrawer from './gdrawer';
 
 configure(true)
-
-// material-ui hello world button
-function App() {
-  return (
-    <ScopedCssBaseline>
-      <Button
-        color="primary"
-        variant="contained"
-      >
-        Hello World
-      </Button>
-    </ScopedCssBaseline>
-  );
-}
 
 // 'response meta tag' for mobile compatibility
 const headElement =
@@ -32,7 +16,7 @@ const headElement =
     name="viewport"
   />;
 
-/* DOM render tree */
+// DOM render tree
 
 // 'responsive meta tag'
 ReactDOM.render(headElement, document.getElementById('root'));
@@ -43,11 +27,10 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-// serviceWorker for offline and load faster
-ReactDOM.render(<App />, document.getElementById('root'));
-serviceWorker.unregister();
-
 ReactDOM.render(<Gdrawer />, document.querySelector('#root'));
+
+// serviceWorker for offline and load faster
+serviceWorker.unregister();
 
 /*
 import React from 'react';
