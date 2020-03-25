@@ -98,34 +98,37 @@ export default function PersistentDrawerLeft() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+        position="fixed"
       >
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
+            color="inherit"
+            edge="start"
+            onClick={handleDrawerOpen}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography
+            noWrap
+            variant="h6"
+          >
             { /* text for our header */ }
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
-        className={classes.drawer}
-        variant="persistent"
         anchor="left"
-        open={open}
         classes={{
           paper: classes.drawerPaper,
         }}
+        className={classes.drawer}
+        open={open}
+        variant="persistent"
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
@@ -133,26 +136,6 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </div>
         <Divider />
-
-        {/*
-          <List>
-            {['View my profile', 'View my family', 'Edit my profile', 'Messages', 'Setup', 'Sign out'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{
-                  <AccountIcon />,
-                  <FamilyIcon />,
-                  <AccountIcon />,
-                  <AccountIcon />,
-                  <FamilyIcon />,
-                  <FamilyIcon />
-                }</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        */}
-
-
         <List>
           <ListItem>
             <ListItemIcon>
@@ -201,6 +184,7 @@ export default function PersistentDrawerLeft() {
       >
         <div className={classes.drawerHeader} />
         <Typography paragraph>
+          DISPLAY DATA FOR SELECTION OF DRAWER HERE ???
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
           facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+/* REACT ROUTER SPA BOILER PLATE IN HERE */
+
 // import {
 //   Route,
 //   NavLink,
@@ -10,7 +13,7 @@ import {
 // import Home from './Home';
 // import Stuff from './Stuff';
 // import Contact from './Contact';
-import Demo from './demo';
+import GridNexus from './gridNexus';
 
 // class Main extends Component {
 //   render() {
@@ -39,7 +42,7 @@ class Main extends Component {
     return (
       <HashRouter>
         <div>
-          <Demo />
+          <GridNexus />
         </div>
       </HashRouter>
     )
