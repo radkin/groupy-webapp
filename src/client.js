@@ -1,3 +1,5 @@
+/* eslint no-undef: 0 */
+
 import ApolloClient from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -9,7 +11,6 @@ const dataIdFromObject = (result) => {
   if (result.id && result.__typename) {
     return result.__typename + result.id;
   }
-
   return null;
 }
 
@@ -23,7 +24,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+      authorization: token ? `Bearer ${token}` : '',
     }
   }
 });
