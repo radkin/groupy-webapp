@@ -28,7 +28,7 @@ export const users = {
   },
   getUser: {
     name: 'user',
-    graphql: `query { user(id: "5e554d1d0ffd206a0a36d932" )
+    graphql: `query { user(id: "" )
                 {
                   first
                   phone
