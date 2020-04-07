@@ -126,6 +126,7 @@ export default function PersistentDrawerLeft() {
     );
   }
   if (data) {
+    console.log('user is', data.user);
     if (data.user.length > 0) {
       return (
         <div className={classes.root}>
