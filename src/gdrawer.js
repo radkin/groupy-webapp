@@ -42,27 +42,6 @@ import * as queries from './graphql/queries';
 
 const userQuery = gql(queries.users.getUser.graphql);
 
-/*
-// DATA BINDING
-let user = {};
-// define client
-client
-  .query({
-    query: userQuery
-  })
-  .then(result => {
-    // console.log(result)
-    // console.log(`first:${result.data.user[0].first}`);
-    user = {
-      first: result.data.user[0].first,
-      last: result.data.user[0].last,
-      phone: result.data.user[0].phone,
-    }
-    console.log('USER IS', user);
-  });
-//DATA BINDING
-*/
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -121,12 +100,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function PersistentDrawerLeft() {
-  // DATA BINDING
-  const { loading, error, data } = useQuery(userQuery);
-  if (loading) return 'Loading...';
-  if (error) return `Error! ${error.message}`;
-
-
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -139,140 +112,157 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
-  return data.user.map(({ first, last, phone }) => (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-        position="fixed"
-      >
-        <Toolbar>
-          <IconButton
-            aria-label="open drawer"
-            className={clsx(classes.menuButton, open && classes.hide)}
-            color="inherit"
-            edge="start"
-            onClick={handleDrawerOpen}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            noWrap
-            variant="h6"
-          >
-            { /* text for our header */ }
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        anchor="left"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        className={classes.drawer}
-        open={open}
-        variant="persistent"
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-          <Divider />
-          <div
-            className={clsx(classes.root)}
-          >
-            <Avatar
-              alt="Person"
-              className={classes.avatar}
-              component={RouterLink}
-              src={userStatic.avatar}
-              to="/settings"
-            />
-            <Typography
-              className={userStatic.name}
-              variant="h4"
-            >
-              {userStatic.name}
-              {first}{last}{phone}
-            </Typography>
-            <Typography variant="body2">{userStatic.bio}</Typography>
-          </div>
-        </div>
-        <Divider />
-        <List>
-          <ListItem>
-            <ListItemIcon>
-              <AccountIcon />
-            </ListItemIcon>
-            <ListItemText primary="View my profile" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <FamilyIcon />
-            </ListItemIcon>
-            <ListItemText primary="View my family" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <EditIcon />
-            </ListItemIcon>
-            <ListItemText primary="Edit my profile" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <NotificationsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Messages" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <ExitToAppIcon />
-            </ListItemIcon>
-            <ListItemText primary="Setup" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <ExitToAppIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sign out" />
-          </ListItem>
-        </List>
+  // DATA BINDING
+  const { loading, error, data } = useQuery(userQuery);
+  if (error) {
+    return <div>Error</div>;
+  }
 
-        <Divider />
-      </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-        <Typography paragraph>
-          DISPLAY DATA FOR SELECTION OF DRAWER HERE ???
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </main>
-    </div>
-  ));
+  if (loading) {
+    return (
+      <div className="App">
+        <h2>Loading...</h2>
+      </div>
+    );
+  }
+  if (data) {
+    if (data.user.length > 0) {
+      return (
+        <div className={classes.root}>
+          <CssBaseline />
+          <AppBar
+            className={clsx(classes.appBar, {
+              [classes.appBarShift]: open,
+            })}
+            position="fixed"
+          >
+            <Toolbar>
+              <IconButton
+                aria-label="open drawer"
+                className={clsx(classes.menuButton, open && classes.hide)}
+                color="inherit"
+                edge="start"
+                onClick={handleDrawerOpen}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                noWrap
+                variant="h6"
+              >
+                { /* text for our header */ }
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            anchor="left"
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            className={classes.drawer}
+            open={open}
+            variant="persistent"
+          >
+            <div className={classes.drawerHeader}>
+              <IconButton onClick={handleDrawerClose}>
+                {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+              </IconButton>
+              <Divider />
+              <div
+                className={clsx(classes.root)}
+              >
+                <Avatar
+                  alt="Person"
+                  className={classes.avatar}
+                  component={RouterLink}
+                  src={userStatic.avatar}
+                  to="/settings"
+                />
+                <Typography
+                  className={userStatic.name}
+                  variant="h4"
+                >
+                  {userStatic.name}
+                  {data.user.first}{data.user.last}{data.user.phone}
+                </Typography>
+                <Typography variant="body2">{userStatic.bio}</Typography>
+              </div>
+            </div>
+            <Divider />
+            <List>
+              <ListItem>
+                <ListItemIcon>
+                  <AccountIcon />
+                </ListItemIcon>
+                <ListItemText primary="View my profile" />
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <FamilyIcon />
+                </ListItemIcon>
+                <ListItemText primary="View my family" />
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <EditIcon />
+                </ListItemIcon>
+                <ListItemText primary="Edit my profile" />
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <NotificationsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Messages" />
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <ExitToAppIcon />
+                </ListItemIcon>
+                <ListItemText primary="Setup" />
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <ExitToAppIcon />
+                </ListItemIcon>
+                <ListItemText primary="Sign out" />
+              </ListItem>
+            </List>
+
+            <Divider />
+          </Drawer>
+          <main
+            className={clsx(classes.content, {
+              [classes.contentShift]: open,
+            })}
+          >
+            <div className={classes.drawerHeader} />
+            <Typography paragraph>
+              DISPLAY DATA FOR SELECTION OF DRAWER HERE ???
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+              ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
+              facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
+              gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
+              donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
+              adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
+              Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
+              imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
+              arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+              donec massa sapien faucibus et molestie ac.
+            </Typography>
+            <Typography paragraph>
+              Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
+              facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
+              tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
+              consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
+              vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
+              hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
+              tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
+              nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
+              accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
+            </Typography>
+          </main>
+        </div>
+      );
+    }
+  }
 }

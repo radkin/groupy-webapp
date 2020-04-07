@@ -3,6 +3,10 @@ import React from 'react';
 import { HashRouter } from 'react-router-dom';
 import GridNexus from './gridNexus';
 
+// for testing graphQL client
+// import { gql } from 'apollo-boost';
+// import * as queries from './graphql/queries';
+
 // Apollo
 import { ApolloProvider } from '@apollo/react-hooks';
 import {
@@ -31,6 +35,28 @@ const client = new ApolloClient({
     })
   ),
 });
+
+/*
+// for testing graphQL client
+const userQuery = gql(queries.users.getUser.graphql);
+let user = {};
+// define client
+client
+  .query({
+    query: userQuery
+  })
+  .then(result => {
+    // console.log(result)
+    // console.log(`first:${result.data.user[0].first}`);
+    user = {
+      first: result.data.user[0].first,
+      last: result.data.user[0].last,
+      phone: result.data.user[0].phone,
+    }
+    console.log('USER IS', user);
+  });
+// testing graphQL client
+*/
 
 function App() {
   return (
