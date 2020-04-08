@@ -35,6 +35,19 @@ export const users = {
                   last
                 }
               }`
-  }
+  },
+  getMe: {
+    name: 'user',
+    graphql: `query getMe {
+                me {
+              		first
+                  last
+                  zipCode
+                  color
+                  initials
+                  profileImage
+                }
+              }`
+  },
   // EXAMPLE export const groups
 }

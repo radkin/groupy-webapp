@@ -1,6 +1,7 @@
 /* eslint no-undef: 0 */
 
 import React from 'react';
+import $ from 'jquery';
 import { Link as RouterLink } from 'react-router-dom';
 // MAterial UI generic
 import clsx from 'clsx';
@@ -29,18 +30,43 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const drawerWidth = 240;
 
-const userStatic = {
-  name: 'Joe Schmoe',
-  avatar: '/images/avatars/avatar_11.png',
-  bio: '94942'
-};
+// const userStatic = {
+//   name: 'Joe Schmoe',
+//   avatar: '/images/avatars/avatar_11.png',
+//   bio: '94942'
+// };
 
 // Apollo
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import * as queries from './graphql/queries';
+/*
+// import client from './client';
 
-const userQuery = gql(queries.users.getUser.graphql);
+// for testing graphQL client
+const meQuery = gql(queries.users.getMe.graphql);
+// let me = {};
+// define client
+client
+  .query({
+    query: meQuery
+  })
+  .then(result => {
+    console.log(result.data.me);
+
+    // console.log(`first:${result.data.user[0].first}`);
+    // user = {
+    //   first: result.data.user[0].first,
+    //   last: result.data.user[0].last,
+    //   phone: result.data.user[0].phone,
+    // }
+    // console.log('USER IS', user);
+  });
+// testing graphQL client
+*/
+
+const meQuery = gql(queries.users.getMe.graphql);
+// const userQuery = gql(queries.users.getUser.graphql);
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -113,7 +139,7 @@ export default function PersistentDrawerLeft() {
   };
 
   // DATA BINDING
-  const { loading, error, data } = useQuery(userQuery);
+  const { loading, error, data } = useQuery(meQuery);
   if (error) {
     return <div>Error</div>;
   }
@@ -126,8 +152,9 @@ export default function PersistentDrawerLeft() {
     );
   }
   if (data) {
-    console.log('user is', data.user);
-    if (data.user.length > 0) {
+    console.log('user is', data.me);
+    // if (data.user.length > 0) {
+    if (!$.isEmptyObject(data.me)) {
       return (
         <div className={classes.root}>
           <CssBaseline />
@@ -176,17 +203,20 @@ export default function PersistentDrawerLeft() {
                   alt="Person"
                   className={classes.avatar}
                   component={RouterLink}
-                  src={userStatic.avatar}
+                  src={data.me.profileImage}
                   to="/settings"
                 />
                 <Typography
-                  className={userStatic.name}
+                  className={data.me.initials}
                   variant="h4"
                 >
-                  {userStatic.name}
-                  {data.user.first}{data.user.last}{data.user.phone}
+                  {data.me.phone}
                 </Typography>
-                <Typography variant="body2">{userStatic.bio}</Typography>
+                <Typography variant="body2">
+                  {`${data.me.first} ${data.me.last}`}
+                  <br></br>
+                  {data.me.zipCode}
+                </Typography>
               </div>
             </div>
             <Divider />
