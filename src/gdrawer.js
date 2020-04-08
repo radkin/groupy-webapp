@@ -214,7 +214,7 @@ export default function PersistentDrawerLeft() {
                 </Typography>
                 <Typography variant="body2">
                   {`${data.me.first} ${data.me.last}`}
-                  <br></br>
+                  <br />
                   {data.me.zipCode}
                 </Typography>
               </div>
