@@ -5,20 +5,20 @@ import PropTypes from 'prop-types';
 // MAterial UI generic
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Drawer, CssBaseline, AppBar, Toolbar, List, Typography, Divider,
-  IconButton, ListItem, ListItemText, ListItemIcon }  from '@material-ui/core';
+import { Drawer, CssBaseline, AppBar, Toolbar, Typography, Divider,
+  IconButton }  from '@material-ui/core';
 // tree shaking material-ui icons is problematic
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import AccountIcon from '@material-ui/icons/AccountCircleRounded';
-import FamilyIcon from '@material-ui/icons/Group';
-import EditIcon from '@material-ui/icons/Edit';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+// import AccountIcon from '@material-ui/icons/AccountCircleRounded';
+// import FamilyIcon from '@material-ui/icons/Group';
+// import EditIcon from '@material-ui/icons/Edit';
+// import NotificationsIcon from '@material-ui/icons/Notifications';
+// import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const drawerWidth = 240;
 // custom imports
-import { Profile } from './components';
+import { Profile, SidebarNav } from './components';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -135,45 +135,7 @@ const Main = props => {
           <Profile />
         </div>
         <Divider />
-        <List>
-          <ListItem>
-            <ListItemIcon>
-              <AccountIcon />
-            </ListItemIcon>
-            <ListItemText primary="View my profile" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <FamilyIcon />
-            </ListItemIcon>
-            <ListItemText primary="View my family" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <EditIcon />
-            </ListItemIcon>
-            <ListItemText primary="Edit my profile" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <NotificationsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Messages" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <ExitToAppIcon />
-            </ListItemIcon>
-            <ListItemText primary="Setup" />
-          </ListItem>
-          <ListItem>
-            <ListItemIcon>
-              <ExitToAppIcon />
-            </ListItemIcon>
-            <ListItemText primary="Sign out" />
-          </ListItem>
-        </List>
-
+        <SidebarNav />
         <Divider />
       </Drawer>
       <main
