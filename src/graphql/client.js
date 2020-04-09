@@ -1,38 +1,56 @@
 /* eslint no-undef: 0 */
+// for testing graphQL client
+// import { gql } from 'apollo-boost';
+// import * as queries from './graphql/queries';
 
-import ApolloClient from 'apollo-client';
-import { setContext } from 'apollo-link-context';
-import { createHttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+// Apollo
+import {
+  ApolloClient,
+  InMemoryCache,
+  HttpLink,
+  ApolloLink
+} from 'apollo-boost';
 
 const token = process.env.REACT_APP_GROUPY_TOKEN;
 
-const dataIdFromObject = (result) => {
-  if (result.id && result.__typename) {
-    return result.__typename + result.id;
-  }
-  return null;
-}
-
-const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
-  credentials: 'same-origin'
-});
-
-const authLink = setContext((_, { headers }) => {
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    }
-  }
-});
-
 const apolloClient = new ApolloClient({
-  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
-  connectToDevTools: true,
-  dataIdFromObject,
-})
+  link: new ApolloLink((operation, forward) => {
+    operation.setContext({
+      headers: {
+        authorization: token ? `Bearer ${token}` : '',
+      }
+    });
+    return forward(operation);
+  }).concat(
+    new HttpLink({
+      uri: 'http://localhost:4000/graphql',
+      credentials: 'same-origin',
+      resolvers: {},
+    })
+  ),
+});
 
 export default apolloClient
+
+/*
+// for testing graphQL client
+const userQuery = gql(queries.users.getUser.graphql);
+let user = {};
+// define client
+client
+  .query({
+    query: userQuery
+  })
+  .then(result => {
+    // console.log(result)
+    // console.log(`first:${result.data.user[0].first}`);
+    user = {
+      first: result.data.user[0].first,
+      last: result.data.user[0].last,
+      phone: result.data.user[0].phone,
+    }
+    console.log('USER IS', user);
+  });
+// testing graphQL client
+*/

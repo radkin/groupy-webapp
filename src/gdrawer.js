@@ -1,5 +1,4 @@
 /* eslint no-undef: 0 */
-
 import React from 'react';
 import $ from 'jquery';
 import { Link as RouterLink } from 'react-router-dom';
@@ -18,7 +17,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Avatar } from '@material-ui/core';
-
 // icons
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -29,44 +27,12 @@ import EditIcon from '@material-ui/icons/Edit';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const drawerWidth = 240;
-
-// const userStatic = {
-//   name: 'Joe Schmoe',
-//   avatar: '/images/avatars/avatar_11.png',
-//   bio: '94942'
-// };
-
 // Apollo
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import * as queries from './graphql/queries';
-/*
-// import client from './client';
-
-// for testing graphQL client
-const meQuery = gql(queries.users.getMe.graphql);
-// let me = {};
-// define client
-client
-  .query({
-    query: meQuery
-  })
-  .then(result => {
-    console.log(result.data.me);
-
-    // console.log(`first:${result.data.user[0].first}`);
-    // user = {
-    //   first: result.data.user[0].first,
-    //   last: result.data.user[0].last,
-    //   phone: result.data.user[0].phone,
-    // }
-    // console.log('USER IS', user);
-  });
-// testing graphQL client
-*/
 
 const meQuery = gql(queries.users.getMe.graphql);
-// const userQuery = gql(queries.users.getUser.graphql);
 
 const useStyles = makeStyles(theme => ({
   root: {
