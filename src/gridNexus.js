@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Gdrawer from './gdrawer';
+import Main from './Main';
 import Home from './Home';
 import Stuff from './Stuff';
 
@@ -32,7 +32,7 @@ export default function CenteredGrid() {
         >
           <Paper
             className={classes.paper}
-          > <Gdrawer /> </Paper>
+          > <Main /> </Paper>
         </Grid>
         <Grid
           item

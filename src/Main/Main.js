@@ -1,5 +1,6 @@
 /* eslint no-undef: 0 */
 import React from 'react';
+import PropTypes from 'prop-types';
 import $ from 'jquery';
 import { Link as RouterLink } from 'react-router-dom';
 // MAterial UI generic
@@ -30,7 +31,7 @@ const drawerWidth = 240;
 // Apollo
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
-import * as queries from './graphql/queries';
+import * as queries from '../graphql/queries';
 
 const meQuery = gql(queries.users.getMe.graphql);
 
@@ -91,7 +92,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PersistentDrawerLeft() {
+const Main = props => {
+  const { children } = props;
+
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -257,9 +260,16 @@ export default function PersistentDrawerLeft() {
               nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
               accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
             </Typography>
+            {children}
           </main>
         </div>
       );
     }
   }
-}
+};
+
+Main.propTypes = {
+  children: PropTypes.node
+};
+
+export default Main;
