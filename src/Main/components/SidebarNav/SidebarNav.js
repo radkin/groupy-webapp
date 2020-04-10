@@ -1,6 +1,6 @@
 /* eslint no-undef: 0 */
 import React from 'react';
-// import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { List, ListItem, ListItemText, ListItemIcon }  from '@material-ui/core';
 // Material-ui Icons
 import AccountIcon from '@material-ui/icons/AccountCircleRounded';
@@ -24,7 +24,10 @@ const SidebarNav = () => {
         </ListItemIcon>
         <ListItemText primary="View my family" />
       </ListItem>
-      <ListItem>
+      <ListItem
+        component={Link}
+        to="/editmyprofile"
+      >
         <ListItemIcon>
           <EditIcon />
         </ListItemIcon>
