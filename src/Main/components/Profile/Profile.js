@@ -1,8 +1,10 @@
 /* eslint no-undef: 0 */
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import $ from 'jquery';
 // MAterial UI generic
 import clsx from 'clsx';
+import { makeStyles } from '@material-ui/styles';
 import { Typography, Avatar }  from '@material-ui/core';
 // Apollo
 import { gql } from 'apollo-boost';
@@ -11,7 +13,20 @@ import * as queries from '../../../graphql/queries';
 
 const meQuery = gql(queries.users.getMe.graphql);
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: theme.palette.white,
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    padding: theme.spacing(2)
+  },
+}));
+
 const Profile = () => {
+
+  const classes = useStyles();
+
   // DATA BINDING
   const { loading, error, data } = useQuery(meQuery);
   if (error) {
