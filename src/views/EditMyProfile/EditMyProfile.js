@@ -2,7 +2,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import $ from 'jquery';
-import { Grid, TextField } from '@material-ui/core';
+import { Grid, TextField, Paper, Avatar } from '@material-ui/core';
 // import { Notifications, Password } from './components';
 // Apollo
 import { gql } from 'apollo-boost';
@@ -13,8 +13,14 @@ const meQuery = gql(queries.users.getMe.graphql);
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(4)
-  }
+    flexGrow: 1,
+    padding: theme.spacing(4),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
 }));
 
 const EditMyProfile = () => {
@@ -41,17 +47,41 @@ const EditMyProfile = () => {
         <div className={classes.root}>
           <Grid
             container
-            spacing={4}
+            spacing={3}
           >
             <Grid>
-              <form
-                autoComplete="off"
-                className={classes.root}
-                noValidate
+              <Paper
+                className={classes.paper}
               >
-                <TextField id="standard-basic" label="First Name" />
-                <TextField id="standard-basic" label="Last Name" />
-              </form>
+                <Avatar
+                  alt="Person"
+                  className={classes.avatar}
+                  src={data.me.profileImage}
+                  to="/settings"
+                />
+              </Paper>
+            </Grid>
+            <Grid>
+              <Paper
+                className={classes.paper}
+              >
+                <form
+                  autoComplete="off"
+                  className={classes.root}
+                  noValidate
+                >
+                  <TextField
+                    helperText="First Name"
+                    id="standard-basic"
+                    label={data.me.first}
+                  />
+                  <TextField
+                    helperText="Last Name"
+                    id="standard-basic"
+                    label={data.me.last}
+                  />
+                </form>
+              </Paper>
             </Grid>
             <Grid>
               <form
@@ -60,11 +90,15 @@ const EditMyProfile = () => {
                 noValidate
               >
                 <TextField
-                  helperText="to help you find groups"
+                  helperText="Zip Code to help you find groups"
                   id="standard-basic"
-                  label="Zip Code" 
+                  label={data.me.zipCode}
                 />
-                <TextField id="standard-basic" label="Initials" />
+                <TextField
+                  helperText="Initials"
+                  id="standard-basic"
+                  label={data.me.initials}
+                />
               </form>
             </Grid>
           </Grid>
