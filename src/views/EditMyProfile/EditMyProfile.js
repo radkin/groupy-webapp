@@ -2,7 +2,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import $ from 'jquery';
-import { Grid, TextField, Paper, Avatar } from '@material-ui/core';
+import { Grid, TextField, Paper, Avatar, Typography } from '@material-ui/core';
 // import { Notifications, Password } from './components';
 // Apollo
 import { gql } from 'apollo-boost';
@@ -53,11 +53,15 @@ const EditMyProfile = () => {
               <Paper
                 className={classes.paper}
               >
+                <Typography>
+                  change profile image
+                </Typography>
                 <Avatar
                   alt="Person"
                   className={classes.avatar}
                   src={data.me.profileImage}
                   to="/settings"
+
                 />
               </Paper>
             </Grid>
@@ -94,6 +98,14 @@ const EditMyProfile = () => {
                   id="standard-basic"
                   label={data.me.zipCode}
                 />
+              </form>
+            </Grid>
+            <Grid>
+              <form
+                autoComplete="off"
+                className={classes.root}
+                noValidate
+              >
                 <TextField
                   helperText="Initials"
                   id="standard-basic"
