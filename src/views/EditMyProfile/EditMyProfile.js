@@ -19,19 +19,15 @@ const EditMyProfile = () => {
         container
         spacing={4}
       >
-        <Grid
+        <Grid>
           item
           md={7}
           xs={12}
-        >
-          <Notifications />
         </Grid>
-        <Grid
+        <Grid>
           item
           md={5}
           xs={12}
-        >
-          <Password />
         </Grid>
       </Grid>
     </div>
