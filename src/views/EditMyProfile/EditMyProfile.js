@@ -60,8 +60,6 @@ const EditMyProfile = () => {
                   alt="Person"
                   className={classes.avatar}
                   src={data.me.profileImage}
-                  to="/settings"
-
                 />
               </Paper>
             </Grid>
