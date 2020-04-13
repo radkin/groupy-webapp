@@ -11,6 +11,14 @@ import * as queries from '../../graphql/queries';
 
 const meQuery = gql(queries.users.getMe.graphql);
 
+function handleChange(e) {
+  if (e.keyCode === 13) {
+    console.log('DO something cool with the contents of our field');
+  } else {
+    console.log(e.target.value);
+  }
+}
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -76,6 +84,8 @@ const EditMyProfile = () => {
                     helperText="First Name"
                     id="standard-basic"
                     label={data.me.first}
+                    onChange={handleChange}
+                    onKeyDown={handleChange}
                   />
                   <TextField
                     helperText="Last Name"
