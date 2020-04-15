@@ -40,6 +40,7 @@ export const users = {
     name: 'user',
     graphql: `query getMe {
                 me {
+                  id
               		first
                   last
                   zipCode
