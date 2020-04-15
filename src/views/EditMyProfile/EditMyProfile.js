@@ -106,6 +106,15 @@ const EditMyProfile = () => {
                   helperText="Zip Code to help you find groups"
                   id="standard-basic"
                   label={data.me.zipCode}
+                  onKeyDown={e => {
+                    updateUser({
+                      variables: {
+                        id: data.me.id,
+                        zipCode: e.target.value
+                      },
+                      refetchQueries: [{ query: meQuery }]
+                    })
+                  }}
                 />
               </form>
             </Grid>
@@ -119,6 +128,15 @@ const EditMyProfile = () => {
                   helperText="Initials"
                   id="standard-basic"
                   label={data.me.initials}
+                  onKeyDown={e => {
+                    updateUser({
+                      variables: {
+                        id: data.me.id,
+                        initials: e.target.value
+                      },
+                      refetchQueries: [{ query: meQuery }]
+                    })
+                  }}
                 />
               </form>
             </Grid>
