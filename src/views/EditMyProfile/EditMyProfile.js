@@ -83,6 +83,15 @@ const EditMyProfile = () => {
                     helperText="Last Name"
                     id="standard-basic"
                     label={data.me.last}
+                    onKeyDown={e => {
+                      updateUser({
+                        variables: {
+                          id: data.me.id,
+                          last: e.target.value
+                        },
+                        refetchQueries: [{ query: meQuery }]
+                      })
+                    }}
                   />
                 </form>
               </Paper>
