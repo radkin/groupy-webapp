@@ -67,7 +67,7 @@ const Profile = () => {
             {data.me.zipCode}
           </Typography>
         </div>
-      )
+      );
     } // data-binding logic
   }
 };
