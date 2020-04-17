@@ -39,7 +39,10 @@ const SidebarNav = () => {
         </ListItemIcon>
         <ListItemText primary="Messages" />
       </ListItem>
-      <ListItem>
+      <ListItem
+        component={Link}
+        to="/setup"
+      >
         <ListItemIcon>
           <ExitToAppIcon />
         </ListItemIcon>
