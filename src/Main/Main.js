@@ -112,7 +112,7 @@ const Main = props => {
             noWrap
             variant="h6"
           >
-            { /* text for our header */ }
+            <img src={require('../assets/groupy_yellow.png')} />
           </Typography>
         </Toolbar>
       </AppBar>

@@ -11,6 +11,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import theme from './theme';
 // Custom
 import { EditMyProfile as EditMyProfileView } from './views';
+import { Setup as SetupView } from './views';
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
                 <Route
                   component={EditMyProfileView}
                   path="/editmyprofile"
+                />
+                <Route
+                  component={SetupView}
+                  path="/setup"
                 />
                 <Route component={() => (<div>404 Not found </div>)} />
                 <Route render={() => <Routes />} />
