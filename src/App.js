@@ -2,7 +2,7 @@
 import React, { Suspense } from 'react';
 import { Root, Routes } from 'react-static';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import GridNexus from './gridNexus';
+import Main from './Main';
 // apollo
 import { ApolloProvider } from '@apollo/react-hooks';
 import client from './graphql/client';
@@ -25,7 +25,7 @@ function App() {
                   exact
                   path="/"
                 >
-                  <GridNexus />
+                  <Main />
                 </Route>
                 <Route
                   component={EditMyProfileView}
