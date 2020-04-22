@@ -147,6 +147,12 @@ const Main = props => {
           <div className={classes.drawerHeader} />
           <Switch>
             <Route
+              exact
+              path="/"
+            >
+              <EditMyProfileView />
+            </Route>
+            <Route
               component={EditMyProfileView}
               path="/editmyprofile"
             />
