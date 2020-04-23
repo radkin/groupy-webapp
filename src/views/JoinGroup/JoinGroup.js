@@ -11,7 +11,7 @@ import * as queries from '../../graphql/queries';
 // import * as mutations from '../../graphql/mutations';
 
 const meQuery = gql(queries.users.getMe.graphql);
-// const groupsQuery = gql(queries.groups.getGroups.graphql);
+const groupsQuery = gql(queries.groups.getGroups.graphql);
 // const updateUserMutation = gql(mutations.users.updateUser.graphql);
 
 const useStyles = makeStyles(theme => ({
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const CreateGroup = () => {
+const JoinGroup = () => {
   const classes = useStyles();
 
   const [age, setAge] = React.useState('');
@@ -43,15 +43,20 @@ const CreateGroup = () => {
   };
 
   // DATA BINDING
-  const { loading, error, data } = useQuery(meQuery);
+  const getMe = useQuery(meQuery);
+  const getGroups = useQuery(groupsQuery);
   // const [updateUser] = useMutation(updateUserMutation);
-  // const [getGroups] = useQuery(getGroups);
 
-  if (loading) return <div>Loading</div>;
-  if (error) return <div>Error: {JSON.stringify(error)}</div>;
+  if (getMe.loading || getGroups.loading) return <div>Loading</div>;
+  if (getMe.error || getGroups.error) return <div>Error: {JSON.stringify(error)}</div>;
 
-  if (data) {
-    if (!$.isEmptyObject(data.me)) {
+  if (getMe.data && getGroups.data) {
+    if (!$.isEmptyObject(getMe.data.me) &&
+      !$.isEmptyObject(getGroups.data.getGroupSuggestions)) {
+      const groups = getGroups.data.getGroupSuggestions;
+      groups.forEach(function(g) {
+        console.log(g.name);
+      });
       return (
         <div className={classes.root}>
           <Grid
@@ -63,7 +68,7 @@ const CreateGroup = () => {
                 className={classes.paper}
               >
                 <Typography>
-                  {data.me.first} to join group
+                  {getMe.data.me.first} to join group
                 </Typography>
               </Paper>
             </Grid>
@@ -91,9 +96,11 @@ const CreateGroup = () => {
                       <MenuItem value="">
                         <em>None</em>
                       </MenuItem>
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+
+                      {groups.map((group, index) =>
+                        <MenuItem value={index}>{group.name}</MenuItem>
+                      )}
+
                     </Select>
                   </FormControl>
 
@@ -130,4 +137,4 @@ const CreateGroup = () => {
   } // data check
 }
 
-export default CreateGroup;
+export default JoinGroup;
