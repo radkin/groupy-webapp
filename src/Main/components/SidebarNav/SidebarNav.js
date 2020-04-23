@@ -36,6 +36,16 @@ const SidebarNav = () => {
         </ListItemIcon>
         <ListItemText primary="Create group" />
       </ListItem>
+      { /* JOIN GROUP */}
+      <ListItem
+        component={Link}
+        to="/joingroup"
+      >
+        <ListItemIcon>
+          <FamilyIcon />
+        </ListItemIcon>
+        <ListItemText primary="Join group" />
+      </ListItem>
       { /* EDIT PROFILE */}
       <ListItem
         component={Link}

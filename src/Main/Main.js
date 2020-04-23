@@ -19,6 +19,7 @@ import { Setup as SetupView } from '../views';
 import { CreateGroup as CreateGroupView } from '../views';
 import { UpcomingEvents as UpcomingEventsView } from '../views';
 import { Messages as MessagesView } from '../views';
+import { JoinGroup as JoinGroupView } from '../views';
 
 const drawerWidth = 240;
 
@@ -166,6 +167,10 @@ const Main = props => {
             <Route
               component={CreateGroupView}
               path="/creategroup"
+            />
+            <Route
+              component={JoinGroupView}
+              path="/joingroup"
             />
             <Route
               component={UpcomingEventsView}

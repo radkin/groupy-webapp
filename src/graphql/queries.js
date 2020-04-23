@@ -50,5 +50,20 @@ export const users = {
                 }
               }`
   },
-  // EXAMPLE export const groups
+}
+
+export const groups = {
+  getGroups: {
+    name: 'group',
+    graphql: `query { getGroupSuggestions (pattern: "") {
+                  id
+                  name
+                  zipCode
+                  profileImage
+                  color
+                  initials
+                  roles
+                }
+              }`
+  },
 }
