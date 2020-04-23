@@ -2,7 +2,7 @@
 import React from 'react';
 import $ from 'jquery';
 import { makeStyles } from '@material-ui/styles';
-import { Grid, TextField, Paper } from '@material-ui/core';
+import { Grid, TextField, Paper, Button } from '@material-ui/core';
 // Apollo
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -102,6 +102,12 @@ const SetupForm = () => {
                     })
                   }}
                 />
+                <Button
+                  color="secondary"
+                  variant="contained"
+                >
+                  Looks Good
+                </Button>
               </form>
             </Grid>
           </Grid>

@@ -48,7 +48,6 @@ const CreateGroup = () => {
               >
                 <Typography>
                   create group for {data.me.first}
-                  SHOULD BE A NAME HERE
                 </Typography>
               </Paper>
             </Grid>
