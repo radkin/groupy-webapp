@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
 
 const JoinGroup = () => {
   const classes = useStyles();
-
   const [age, setAge] = React.useState('');
 
   const handleChange = (event) => {
@@ -54,9 +53,6 @@ const JoinGroup = () => {
     if (!$.isEmptyObject(getMe.data.me) &&
       !$.isEmptyObject(getGroups.data.getGroupSuggestions)) {
       const groups = getGroups.data.getGroupSuggestions;
-      groups.forEach(function(g) {
-        console.log(g.name);
-      });
       return (
         <div className={classes.root}>
           <Grid
@@ -81,15 +77,14 @@ const JoinGroup = () => {
                   className={classes.root}
                   noValidate
                 >
-
                   <FormControl
                     className={classes.formControl}
                     variant="filled"
                   >
-                    <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
+                    <InputLabel id="select-group-label">Group</InputLabel>
                     <Select
-                      id="demo-simple-select-filled"
-                      labelId="demo-simple-select-filled-label"
+                      id="select-group"
+                      labelId="select-group-label"
                       onChange={handleChange}
                       value={age}
                     >
@@ -98,29 +93,16 @@ const JoinGroup = () => {
                       </MenuItem>
 
                       {groups.map((group, index) =>
-                        <MenuItem value={index}>{group.name}</MenuItem>
+                        <MenuItem
+                          key={index}
+                          value={index}
+                        >
+                          {group.name}
+                        </MenuItem>
                       )}
 
                     </Select>
                   </FormControl>
-
-                  { /*
-                  <TextField
-                    helperText="Name of Group"
-                    id="standard-basic"
-                    label={data.me.first}
-                    onKeyDown={e => {
-                      updateUser({
-                        variables: {
-                          id: data.me.id,
-                          first: e.target.value
-                        },
-                        refetchQueries: [{ query: meQuery }]
-                      })
-                    }}
-                  />
-                  */ }
-
                   <Button
                     color="secondary"
                     variant="contained"
