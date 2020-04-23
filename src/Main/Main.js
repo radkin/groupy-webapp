@@ -16,6 +16,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Profile, SidebarNav } from './components';
 import { EditMyProfile as EditMyProfileView } from '../views';
 import { Setup as SetupView } from '../views';
+import { CreateGroup as CreateGroupView } from '../views';
+import { UpcomingEvents as UpcomingEventsView } from '../views';
+import { Messages as MessagesView } from '../views';
 
 const drawerWidth = 240;
 
@@ -159,6 +162,18 @@ const Main = props => {
             <Route
               component={SetupView}
               path="/setup"
+            />
+            <Route
+              component={CreateGroupView}
+              path="/creategroup"
+            />
+            <Route
+              component={UpcomingEventsView}
+              path="/upcomingevents"
+            />
+            <Route
+              component={MessagesView}
+              path="/messages"
             />
             <Route component={() => (<div>404 Not found </div>)} />
             <Route render={() => <Routes />} />
