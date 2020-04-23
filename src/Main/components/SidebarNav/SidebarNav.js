@@ -10,6 +10,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
+import BuildIcon from '@material-ui/icons/Build';
 
 const SidebarNav = () => {
   return (
@@ -71,7 +72,7 @@ const SidebarNav = () => {
         to="/setup"
       >
         <ListItemIcon>
-          <ExitToAppIcon />
+          <BuildIcon />
         </ListItemIcon>
         <ListItemText primary="Setup" />
       </ListItem>
