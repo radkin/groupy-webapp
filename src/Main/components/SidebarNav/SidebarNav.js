@@ -12,18 +12,31 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const SidebarNav = () => {
   return (
     <List>
+      { /* VIEW PROFILE*/}
       <ListItem>
         <ListItemIcon>
           <AccountIcon />
         </ListItemIcon>
         <ListItemText primary="View my profile" />
       </ListItem>
+      { /* VIEW FAMILY */}
       <ListItem>
         <ListItemIcon>
           <FamilyIcon />
         </ListItemIcon>
         <ListItemText primary="View my family" />
       </ListItem>
+      { /* CREATE GROUP */}
+      <ListItem
+        component={Link}
+        to="/creategroup"
+      >
+        <ListItemIcon>
+          <EditIcon />
+        </ListItemIcon>
+        <ListItemText primary="Create group" />
+      </ListItem>
+      { /* EDIT PROFILE */}
       <ListItem
         component={Link}
         to="/editmyprofile"
@@ -33,12 +46,14 @@ const SidebarNav = () => {
         </ListItemIcon>
         <ListItemText primary="Edit my profile" />
       </ListItem>
+      { /* MESSAGES */}
       <ListItem>
         <ListItemIcon>
           <NotificationsIcon />
         </ListItemIcon>
         <ListItemText primary="Messages" />
       </ListItem>
+      { /* SETUP */}
       <ListItem
         component={Link}
         to="/setup"
@@ -48,12 +63,14 @@ const SidebarNav = () => {
         </ListItemIcon>
         <ListItemText primary="Setup" />
       </ListItem>
+      { /* SIGN OUT */}
       <ListItem>
         <ListItemIcon>
           <ExitToAppIcon />
         </ListItemIcon>
         <ListItemText primary="Sign out" />
       </ListItem>
+      { /* END OF LIST ITEMS */}
     </List>
   );
 };
