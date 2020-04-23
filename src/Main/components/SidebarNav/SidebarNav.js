@@ -8,6 +8,8 @@ import FamilyIcon from '@material-ui/icons/Group';
 import EditIcon from '@material-ui/icons/Edit';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 
 const SidebarNav = () => {
   return (
@@ -32,7 +34,7 @@ const SidebarNav = () => {
         to="/creategroup"
       >
         <ListItemIcon>
-          <EditIcon />
+          <GroupAddIcon />
         </ListItemIcon>
         <ListItemText primary="Create group" />
       </ListItem>
@@ -42,7 +44,7 @@ const SidebarNav = () => {
         to="/joingroup"
       >
         <ListItemIcon>
-          <FamilyIcon />
+          <PeopleOutlineIcon />
         </ListItemIcon>
         <ListItemText primary="Join group" />
       </ListItem>
