@@ -1,4 +1,5 @@
 /* eslint no-undef: 0 */
+
 // for testing graphQL client
 // import { gql } from 'apollo-boost';
 // import * as queries from './graphql/queries';
@@ -14,6 +15,11 @@ import {
 const token = process.env.REACT_APP_GROUPY_TOKEN;
 const server = process.env.REACT_APP_GROUPY_GRAPHQL_SERVER;
 const port = process.env.REACT_APP_PORTNUM;
+let transferProtocol = 'https';
+
+if (process.env.REACT_APP_PORTNUM) {
+  transferProtocol = 'http';
+}
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
@@ -26,7 +32,7 @@ const apolloClient = new ApolloClient({
     return forward(operation);
   }).concat(
     new HttpLink({
-      uri: `http://${server}:${port}/graphql`,
+      uri: `${transferProtocol}://${server}:${port}/graphql`,
       credentials: 'same-origin',
       resolvers: {},
     })
