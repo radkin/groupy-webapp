@@ -12,6 +12,8 @@ import {
 } from 'apollo-boost';
 
 const token = process.env.REACT_APP_GROUPY_TOKEN;
+const server = process.env.REACT_APP_GROUPY_GRAPHQL_SERVER;
+const port = process.env.REACT_APP_PORTNUM;
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
@@ -24,7 +26,7 @@ const apolloClient = new ApolloClient({
     return forward(operation);
   }).concat(
     new HttpLink({
-      uri: 'http://localhost:4000/graphql',
+      uri: `http://${server}:${port}/graphql`,
       credentials: 'same-origin',
       resolvers: {},
     })
