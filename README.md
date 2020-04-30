@@ -79,6 +79,20 @@ query getMe {
 Pre-req "setting up developer environment" `node ./scripts/start.js` .You should now see the groupy-webapp at this url
 `http://localhost:4000`
 
+### Production
+simply run these commands:
+```bash
+NODE_ENV=production npm run build`
+serve -s build
+```
+If you do not have "serve" installed IE. seeing this on Ubuntu
+```bash
+Command 'serve' not found, but can be installed with:
+sudo snap install serve
+```
+then `npm -g install serve`
+and take a look at `http://localhost:5000`
+
 ##### Author/Maintainer
 Noel Miller
 
