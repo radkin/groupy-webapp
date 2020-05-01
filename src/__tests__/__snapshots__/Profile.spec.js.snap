@@ -2,14 +2,12 @@
 
 exports[`proper profile data is correct 1`] = `
 Object {
-  "me": Object {
-    "color": "0xffff7cae",
-    "first": "jon",
-    "id": "5e62ade15014b544a50af943",
-    "initials": "RR",
-    "last": "smith",
-    "profileImage": "https://avatars3.githubusercontent.com/u/467568?s=400&v=4",
-    "zipCode": "00001",
-  },
+  "color": "0xffff7cae",
+  "first": "jon",
+  "id": "5e62ade15014b544a50af943",
+  "initials": "RR",
+  "last": "smith",
+  "profileImage": "https://avatars3.githubusercontent.com/u/467568?s=400&v=4",
+  "zipCode": "00001",
 }
 `;

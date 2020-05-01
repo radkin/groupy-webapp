@@ -1,11 +1,9 @@
 {
-  "me": {
-    "id": "5e62ade15014b544a50af943",
-    "first": "jon",
-    "last": "smith",
-    "zipCode": "00001",
-    "color": "0xffff7cae",
-    "initials": "RR",
-    "profileImage": "https://avatars3.githubusercontent.com/u/467568?s=400&v=4"
-  }
+  "id": "5e62ade15014b544a50af943",
+  "first": "jon",
+  "last": "smith",
+  "zipCode": "00001",
+  "color": "0xffff7cae",
+  "initials": "RR",
+  "profileImage": "https://avatars3.githubusercontent.com/u/467568?s=400&v=4"
 }
