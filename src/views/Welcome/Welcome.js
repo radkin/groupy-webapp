@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Grid, Paper, Typography, TextField, Button } from '@material-ui/core';
 // requirements for cookies
 import Cookies from 'universal-cookie';
-// import axios from 'axios';
+import axios from 'axios';
 
 const cookies = new Cookies();
 const cookieExists = cookies.get('groupy');
@@ -23,14 +23,37 @@ const useStyles = makeStyles(theme => ({
 
 const Welcome = () => {
   const classes = useStyles();
-
   const [phoneNumber, setVerificationCode] = useState('');
+  const [isReadyForSixDigitCode, setSixDigitCodeStatus] = useState(false);
 
-  function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log( 'phoneNumber:', phoneNumber);
+    if (await getData(phoneNumber)) {
+      console.log('requested 6-digit code');
+    } else {
+      return 'something went wrong with our request';
+    }
   }
 
+  const getData = (contact) => {
+    axios.post(`http://localhost:4000/sendVerification/${contact}`)
+      .then(function (response) {
+        console.log(response);
+        if (response.status === 200) {
+          console.log('time to unhide the enter your 6-digit code view');
+          setSixDigitCodeStatus(true);
+        } else {
+          console.log('server response was not valid');
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  if (isReadyForSixDigitCode) {
+    return <p>Please enter your six digit code</p>
+  }
   if (!cookieExists) {
     return (
       <div className={classes.root}>
