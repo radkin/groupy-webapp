@@ -2,6 +2,12 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Paper, Typography, TextField, Button } from '@material-ui/core';
+// requirements for cookies
+import Cookies from 'universal-cookie';
+// import axios from 'axios';
+
+const cookies = new Cookies();
+const cookieExists = cookies.get('groupy');
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,56 +24,61 @@ const useStyles = makeStyles(theme => ({
 const Welcome = () => {
   const classes = useStyles();
 
-  const [verificationCode, setVerificationCode] = useState('');
+  const [phoneNumber, setVerificationCode] = useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log( 'verificationCode:', verificationCode);
+    console.log( 'phoneNumber:', phoneNumber);
   }
 
-  return (
-    <div className={classes.root}>
-      <Grid
-        container
-        spacing={3}
-      >
-        <Grid>
-          <Paper
-            className={classes.paper}
-          >
-            <Typography variant="h1">
-              Welcome to groupy
-            </Typography>
-            <Typography variant="h4">
-              We have just sent you a text message with a 6-digit verification code.
-            </Typography>
-
-            <form
-              className={classes.container}
-              onSubmit={handleSubmit}
+  if (!cookieExists) {
+    return (
+      <div className={classes.root}>
+        <Grid
+          container
+          spacing={3}
+        >
+          <Grid>
+            <Paper
+              className={classes.paper}
             >
-              <TextField
-                onInput={e=>setVerificationCode(e.target.value)}
-                value={verificationCode}
-              />
-              <Typography
-                className={classes.divider}
-              />
-              <Button
-                className={classes.button}
-                color="secondary"
-                type="submit"
-                variant="outlined"
-              >
-                Login
-              </Button>
-            </form>
+              <Typography variant="h1">
+                Welcome to groupy
+              </Typography>
+              <Typography variant="h4">
+                Please Enter your Phone Number
+              </Typography>
 
-          </Paper>
+              <form
+                className={classes.container}
+                onSubmit={handleSubmit}
+              >
+                <TextField
+                  onInput={e=>setVerificationCode(e.target.value)}
+                  value={phoneNumber}
+                />
+                <Typography
+                  className={classes.divider}
+                />
+                <Button
+                  className={classes.button}
+                  color="secondary"
+                  type="submit"
+                  variant="outlined"
+                >
+                  Go
+                </Button>
+              </form>
+
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return <p>WOOT</p>
+  }
+
 }
 
 export default Welcome;
