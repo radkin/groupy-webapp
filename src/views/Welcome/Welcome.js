@@ -7,8 +7,7 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 const cookies = new Cookies();
-// const cookieExists = cookies.get('groupy');
-const cookieExists = cookies.get('testing');
+const cookieExists = cookies.get('groupy');
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -3,7 +3,7 @@
 // for testing graphQL client
 // import { gql } from 'apollo-boost';
 // import * as queries from './graphql/queries';
-
+import Cookies from 'universal-cookie';
 // Apollo
 import {
   ApolloClient,
@@ -12,7 +12,24 @@ import {
   ApolloLink
 } from 'apollo-boost';
 
-const token = process.env.REACT_APP_GROUPY_TOKEN;
+
+// Set variables via cookie
+const cookies = new Cookies();
+const cookieExists = cookies.get('groupy');
+
+var token = 'undefined';
+var userID = 'undefined';
+
+if (cookieExists) {
+  token = cookieExists.token;
+  userID = cookieExists.userID;
+} else {
+  console.log('Impossible situation. You have no cookie and that means the\
+    welcome view should prompt you to set up your profile');
+}
+
+console.log('we will use userID at some point', userID);
+// const token = process.env.REACT_APP_GROUPY_TOKEN;
 const server = process.env.REACT_APP_GROUPY_GRAPHQL_SERVER;
 const port = process.env.REACT_APP_PORTNUM;
 let transferProtocol = 'https';
