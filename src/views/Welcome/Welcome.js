@@ -7,7 +7,8 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 
 const cookies = new Cookies();
-const cookieExists = cookies.get('groupy');
+// const cookieExists = cookies.get('groupy');
+const cookieExists = cookies.get('testing');
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,10 +24,13 @@ const useStyles = makeStyles(theme => ({
 
 const Welcome = () => {
   const classes = useStyles();
+
   const [phoneNumber, setVerificationCode] = useState('');
   const [isReadyForSixDigitCode, setSixDigitCodeStatus] = useState(false);
+  const [sixDigitCode, requestToken] = useState('');
 
-  const handleSubmit = async (event) => {
+  // get 6-digit-code
+  const handleContactSubmit = async (event) => {
     event.preventDefault();
     console.log( 'phoneNumber:', phoneNumber);
     if (await getData(phoneNumber)) {
@@ -41,7 +45,6 @@ const Welcome = () => {
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {
-          console.log('time to unhide the enter your 6-digit code view');
           setSixDigitCodeStatus(true);
         } else {
           console.log('server response was not valid');
@@ -51,8 +54,86 @@ const Welcome = () => {
         console.log(error);
       });
   }
+
+  // get token
+  const handleTokenSubmit = async (event) => {
+    event.preventDefault();
+    console.log( 'sixDigitCode:', sixDigitCode);
+    if (await getToken(sixDigitCode)) {
+      console.log('requested JWT token');
+    } else {
+      return 'something went wrong with our request';
+    }
+  }
+
+  const getToken = (sixDigitCode) => {
+    axios.post(`http://localhost:4000/verify/${phoneNumber}/${sixDigitCode}`)
+      .then(function (response) {
+        console.log(response);
+        if (response.status === 200) {
+          console.log('time to create the cookie');
+          const cookieData = {
+            token: response.data.token,
+            userID: response.data.userID
+          }
+          cookies.set('groupy',
+            cookieData,
+            { path: '/' }
+          );
+          console.log(cookies.get('groupy'));
+        } else {
+          console.log('server response was not valid');
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   if (isReadyForSixDigitCode) {
-    return <p>Please enter your six digit code</p>
+    return (
+      <div className={classes.root}>
+        <Grid
+          container
+          spacing={3}
+        >
+          <Grid>
+            <Paper
+              className={classes.paper}
+            >
+              <Typography variant="h1">
+                Welcome to groupy
+              </Typography>
+              <Typography variant="h4">
+                Enter your six-digit "verification code"
+              </Typography>
+
+              <form
+                className={classes.container}
+                onSubmit={handleTokenSubmit}
+              >
+                <TextField
+                  onInput={e=>requestToken(e.target.value)}
+                  value={sixDigitCode}
+                />
+                <Typography
+                  className={classes.divider}
+                />
+                <Button
+                  className={classes.button}
+                  color="secondary"
+                  type="submit"
+                  variant="outlined"
+                >
+                  Go
+                </Button>
+              </form>
+
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
+    );
   }
   if (!cookieExists) {
     return (
@@ -69,12 +150,16 @@ const Welcome = () => {
                 Welcome to groupy
               </Typography>
               <Typography variant="h4">
-                Please Enter your Phone Number
+                Please Enter your Phone Number with country code
+              </Typography>
+              <p> </p>
+              <Typography>
+                For USA use +1 in front, E.G. +1310 (LA area code)
               </Typography>
 
               <form
                 className={classes.container}
-                onSubmit={handleSubmit}
+                onSubmit={handleContactSubmit}
               >
                 <TextField
                   onInput={e=>setVerificationCode(e.target.value)}
