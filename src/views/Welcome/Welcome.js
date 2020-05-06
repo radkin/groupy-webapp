@@ -5,9 +5,14 @@ import { Grid, Paper, Typography, TextField, Button } from '@material-ui/core';
 // requirements for cookies
 import Cookies from 'universal-cookie';
 import axios from 'axios';
-
 const cookies = new Cookies();
 const cookieExists = cookies.get('groupy');
+const server = process.env.REACT_APP_GROUPY_GRAPHQL_SERVER;
+const port = process.env.REACT_APP_PORTNUM;
+let transferProtocol = 'https';
+if (process.env.REACT_APP_PORTNUM) {
+  transferProtocol = 'http';
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,7 +45,7 @@ const Welcome = () => {
   }
 
   const getData = (contact) => {
-    axios.post(`http://localhost:4000/sendVerification/${contact}`)
+    axios.post(`${transferProtocol}://${server}:${port}/${contact}`)
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {
@@ -66,7 +71,7 @@ const Welcome = () => {
   }
 
   const getToken = (sixDigitCode) => {
-    axios.post(`http://localhost:4000/verify/${phoneNumber}/${sixDigitCode}`)
+    axios.post(`${transferProtocol}://${server}:${port}/verify/${phoneNumber}/${sixDigitCode}`)
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {
