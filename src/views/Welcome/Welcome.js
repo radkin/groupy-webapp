@@ -45,8 +45,15 @@ const Welcome = () => {
   }
 
   const getData = (contact) => {
-    axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
-    axios.post(`${transferProtocol}://${server}:${port}/sendVerification/${contact}`)
+    axios({
+      method: 'post',
+      url: `${transferProtocol}://${server}:${port}/sendVerification/${contact}`,
+      config: {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        }
+      }
+    })
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {
@@ -72,8 +79,15 @@ const Welcome = () => {
   }
 
   const getToken = (sixDigitCode) => {
-    axios.defaults.headers.post['Content-Type'] ='application/x-www-form-urlencoded';
-    axios.post(`${transferProtocol}://${server}:${port}/verify/${phoneNumber}/${sixDigitCode}`)
+    axios({
+      method: 'post',
+      url: `${transferProtocol}://${server}:${port}/verify/${phoneNumber}/${sixDigitCode}`,
+      config: {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        }
+      }
+    })
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {
