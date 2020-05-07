@@ -30,7 +30,6 @@ fields (Example) populated:
 ```bash
 REACT_APP_PORTNUM='4000'
 REACT_APP_GROUPY_GRAPHQL_SERVER='localhost'
-REACT_APP_GROUPY_TOKEN='YOUR TOKEN HERE'
 REACT_APP_ENV='development'
 ```
 
