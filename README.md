@@ -92,6 +92,15 @@ sudo snap install serve
 then `npm -g install serve`
 and take a look at `http://localhost:5000`
 
+### Testing
+to run tests
+```bash
+npm run test
+```
+to see coverage
+```bash
+npm run coverage
+```
 ##### Author/Maintainer
 Noel Miller
 
