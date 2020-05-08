@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`proper profile data is correct 1`] = `
+Object {
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI1ZTYyYWRlMTUwMTRiNTQ0YTUwYWY5NDMiLCJpYXQiOjE1ODg5NzQ1MTF9.3Dzqp7doG8HAQ9Xz2kbO9iW9UMVA03q6cjyxfNsGddw",
+  "userID": "5e62ade15014b544a50af943",
+}
+`;
