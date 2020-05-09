@@ -25,8 +25,8 @@ if (cookieObject) {
   token = cookieObject.token;
   userID = cookieObject.userID;
 } else {
-  console.log('Impossible situation. You have no cookie and that means the\
-    welcome view should prompt you to set up your profile');
+  console.log('You have no cookie and that means the welcome view should \
+  you to set up your profile');
 }
 
 console.log('we will use userID at some point', userID);
