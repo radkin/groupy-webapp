@@ -15,17 +15,18 @@ import {
 
 // Set variables via cookie
 const cookies = new Cookies();
-const cookieExists = cookies.get('groupy');
+const cookieObject = cookies.get('groupy');
 
 var token = 'undefined';
 var userID = 'undefined';
 
-if (cookieExists) {
-  token = cookieExists.token;
-  userID = cookieExists.userID;
+if (cookieObject) {
+  console.log('cookie object is ', cookieObject);
+  token = cookieObject.token;
+  userID = cookieObject.userID;
 } else {
-  console.log('Impossible situation. You have no cookie and that means the\
-    welcome view should prompt you to set up your profile');
+  console.log('You have no cookie and that means the welcome view should \
+  you to set up your profile');
 }
 
 console.log('we will use userID at some point', userID);
