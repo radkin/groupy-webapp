@@ -30,7 +30,6 @@ fields (Example) populated:
 ```bash
 REACT_APP_PORTNUM='4000'
 REACT_APP_GROUPY_GRAPHQL_SERVER='localhost'
-REACT_APP_GROUPY_TOKEN='YOUR TOKEN HERE'
 REACT_APP_ENV='development'
 ```
 
@@ -93,6 +92,15 @@ sudo snap install serve
 then `npm -g install serve`
 and take a look at `http://localhost:5000`
 
+### Testing
+to run tests
+```bash
+npm run test
+```
+to see coverage
+```bash
+npm run coverage
+```
 ##### Author/Maintainer
 Noel Miller
 
