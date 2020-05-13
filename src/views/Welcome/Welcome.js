@@ -95,8 +95,8 @@ const Welcome = () => {
             token: response.data.token,
             userID: response.data.userID
           }
-          localStorage.setItem('groupy', localStorageData);
-          console.log(localStorage.getItem('groupy'));
+          localStorage.setItem('groupy', JSON.stringify(localStorageData));
+          console.log(JSON.parse(localStorage.getItem('groupy')));
         } else {
           console.log('server response was not valid');
         }

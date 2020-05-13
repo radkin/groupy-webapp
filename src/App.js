@@ -17,16 +17,12 @@ import { UpcomingEvents as UpcomingEventsView } from './views';
 import { Messages as MessagesView } from './views';
 import { JoinGroup as JoinGroupView } from './views';
 import { Welcome as WelcomeView } from './views';
-// requirements for cookies
-import Cookies from 'universal-cookie';
-// import axios from 'axios';
 
-const cookies = new Cookies();
-const cookieExists = cookies.get('groupy')
+const me = true;
 
 class App extends Component {
   render() {
-    if (cookieExists) {
+    if (me) {
       return (
         <Root>
           <ApolloProvider client={client}>

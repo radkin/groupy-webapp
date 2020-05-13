@@ -26,8 +26,8 @@ const persistCache = new PersistCache({
   cache,
   storage: window.localStorage,
 });
-// token
-const token = localStorage.getItem('groupy');
+const ls = JSON.parse(localStorage.getItem('groupy'));
+const token = ls.token;
 
 const apolloClient = new ApolloClient({
   cache: cache,
