@@ -16,81 +16,56 @@ import { CreateGroup as CreateGroupView } from './views';
 import { UpcomingEvents as UpcomingEventsView } from './views';
 import { Messages as MessagesView } from './views';
 import { JoinGroup as JoinGroupView } from './views';
-import { Welcome as WelcomeView } from './views';
-
-const me = true;
 
 class App extends Component {
   render() {
-    if (me) {
-      return (
-        <Root>
-          <ApolloProvider client={client}>
-            <ThemeProvider theme={theme}>
-              <Suspense fallback={<div>Loading... </div>}>
-                <BrowserRouter>
-                  <Switch>
-                    <Route
-                      exact
-                      path="/"
-                    >
-                      <Main />
-                    </Route>
-                    <Route
-                      component={EditMyProfileView}
-                      path="/editmyprofile"
-                    />
-                    <Route
-                      component={SetupView}
-                      path="/setup"
-                    />
-                    <Route
-                      component={CreateGroupView}
-                      path="/creategroup"
-                    />
-                    <Route
-                      component={JoinGroupView}
-                      path="/joingroup"
-                    />
-                    <Route
-                      component={UpcomingEventsView}
-                      path="/upcomingevents"
-                    />
-                    <Route
-                      component={MessagesView}
-                      path="/messages"
-                    />
-                    <Route component={() => (<div>404 Not found </div>)} />
-                    <Route render={() => <Routes />} />
-                  </Switch>
-                </BrowserRouter>
-              </Suspense>
-            </ThemeProvider>
-          </ApolloProvider>
-        </Root>
-      )
-    } else {
-      return (
-        <Root>
-          <ApolloProvider client={client}>
-            <ThemeProvider theme={theme}>
-              <Suspense fallback={<div>Loading... </div>}>
-                <BrowserRouter>
-                  <Switch>
-                    <Route
-                      component={WelcomeView}
-                      path="/"
-                    />
-                    <Route component={() => (<div>404 Not found </div>)} />
-                    <Route render={() => <Routes />} />
-                  </Switch>
-                </BrowserRouter>
-              </Suspense>
-            </ThemeProvider>
-          </ApolloProvider>
-        </Root>
-      )
-    }
+    return (
+      <Root>
+        <ApolloProvider client={client}>
+          <ThemeProvider theme={theme}>
+            <Suspense fallback={<div>Loading... </div>}>
+              <BrowserRouter>
+                <Switch>
+                  <Route
+                    exact
+                    path="/"
+                  >
+                    <Main />
+                  </Route>
+                  <Route
+                    component={EditMyProfileView}
+                    path="/editmyprofile"
+                  />
+                  <Route
+                    component={SetupView}
+                    path="/setup"
+                  />
+                  <Route
+                    component={CreateGroupView}
+                    path="/creategroup"
+                  />
+                  <Route
+                    component={JoinGroupView}
+                    path="/joingroup"
+                  />
+                  <Route
+                    component={UpcomingEventsView}
+                    path="/upcomingevents"
+                  />
+                  <Route
+                    component={MessagesView}
+                    path="/messages"
+                  />
+                  <Route component={() => (<div>404 Not found </div>)} />
+                  <Route render={() => <Routes />} />
+                </Switch>
+              </BrowserRouter>
+            </Suspense>
+          </ThemeProvider>
+        </ApolloProvider>
+      </Root>
+    )
+
   }
 }
 
