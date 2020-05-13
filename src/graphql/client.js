@@ -3,7 +3,6 @@
 // for testing graphQL client
 // import { gql } from 'apollo-boost';
 // import * as queries from './graphql/queries';
-import Cookies from 'universal-cookie';
 // Apollo
 import {
   ApolloClient,
@@ -11,36 +10,28 @@ import {
   HttpLink,
   ApolloLink
 } from 'apollo-boost';
+import { persistCache as PersistCache } from 'apollo-cache-persist';
+import localStorage from 'localStorage';
 
-
-// Set variables via cookie
-const cookies = new Cookies();
-const cookieObject = cookies.get('groupy');
-
-var token = 'undefined';
-var userID = 'undefined';
-
-if (cookieObject) {
-  console.log('cookie object is ', cookieObject);
-  token = cookieObject.token;
-  userID = cookieObject.userID;
-} else {
-  console.log('You have no cookie and that means the welcome view should \
-  you to set up your profile');
-}
-
-console.log('we will use userID at some point', userID);
-// const token = process.env.REACT_APP_GROUPY_TOKEN;
 const server = process.env.REACT_APP_GROUPY_GRAPHQL_SERVER;
 const port = process.env.REACT_APP_PORTNUM;
+// set up protocol
 let transferProtocol = 'https';
-
 if (process.env.REACT_APP_PORTNUM) {
   transferProtocol = 'http';
 }
+// persist cache in Apollo
+const cache = new InMemoryCache();
+const persistCache = new PersistCache({
+  cache,
+  storage: window.localStorage,
+});
+// token
+const token = localStorage.getItem('groupy');
 
 const apolloClient = new ApolloClient({
-  cache: new InMemoryCache(),
+  cache: cache,
+  persistCache: persistCache,
   link: new ApolloLink((operation, forward) => {
     operation.setContext({
       headers: {
