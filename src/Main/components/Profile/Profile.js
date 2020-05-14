@@ -41,7 +41,6 @@ const Profile = () => {
     );
   }
   if (data) {
-    console.log('user is', data.me);
     // if (data.user.length > 0) {
     if (!$.isEmptyObject(data.me)) {
       return (
