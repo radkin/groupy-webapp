@@ -36,8 +36,10 @@ const init = async () => {
     cache,
     storage: window.localStorage,
   });
+  // prep client with token
+  let token = 'undefined';
   const ls = await JSON.parse(localStorage.getItem('groupy'));
-  const token = ls.token;
+  if (ls) { token = ls.token; }
 
   const client = new ApolloClient({
     cache: cache,
