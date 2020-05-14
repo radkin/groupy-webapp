@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "../App";
 // Apollo requirements
 import { ApolloProvider } from '@apollo/react-hooks';
 import { createMockClient } from 'mock-apollo-client';
 import { gql } from 'apollo-boost';
 import * as queries from './graphql/queries';
-import me from './__tests__/data';
+import me from './data';
 
 const meQuery = gql(queries.users.getMe.graphql);
 

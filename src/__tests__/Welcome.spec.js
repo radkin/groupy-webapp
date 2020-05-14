@@ -8,10 +8,10 @@ import { mount } from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 // custom Mock
-import MockTheme from '../../testComponents/MockTheme';
+import MockTheme from '../testComponents/MockTheme';
 import { createShallow } from '@material-ui/core/test-utils';
 
-import Welcome from './Welcome';
+import Welcome from '../views/Welcome';
 
 describe('<Welcome /> with no props', () => {
   it('should render <TextField>', () => {
