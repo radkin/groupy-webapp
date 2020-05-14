@@ -4,12 +4,23 @@ import MockTheme from '../testComponents/MockTheme';
 import Main from './Main';
 // Apollo requirements
 import { ApolloProvider } from '@apollo/react-hooks';
-import client from '../graphql/client';
+import { createMockClient } from 'mock-apollo-client';
+import { gql } from 'apollo-boost';
+import * as queries from '../graphql/queries';
+import me from '../__tests__/data';
+
+const meQuery = gql(queries.users.getMe.graphql);
+
+const mockClient = createMockClient();
+mockClient.setRequestHandler(
+  meQuery,
+  () => Promise.resolve({ me })
+);
 
 test('<Main />', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <ApolloProvider client={client}>
+    <ApolloProvider client={mockClient}>
       <MockTheme>
         <Main />
       </MockTheme>
