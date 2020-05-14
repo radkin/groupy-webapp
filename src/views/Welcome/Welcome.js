@@ -2,11 +2,10 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Paper, Typography, TextField, Button } from '@material-ui/core';
-// requirements for cookies
-import Cookies from 'universal-cookie';
+import localStorage from 'localStorage';
+
 import axios from 'axios';
-const cookies = new Cookies();
-const cookieExists = cookies.get('groupy');
+const storageExists = localStorage.getItem('groupy');
 const server = process.env.REACT_APP_GROUPY_GRAPHQL_SERVER;
 const port = process.env.REACT_APP_PORTNUM;
 let transferProtocol = 'https';
@@ -91,16 +90,13 @@ const Welcome = () => {
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {
-          console.log('time to create the cookie');
-          const cookieData = {
+          console.log('time to create groupy localStorage');
+          const localStorageData = {
             token: response.data.token,
             userID: response.data.userID
           }
-          cookies.set('groupy',
-            cookieData,
-            { path: '/' }
-          );
-          console.log(cookies.get('groupy'));
+          localStorage.setItem('groupy', JSON.stringify(localStorageData));
+          console.log(JSON.parse(localStorage.getItem('groupy')));
         } else {
           console.log('server response was not valid');
         }
@@ -155,7 +151,7 @@ const Welcome = () => {
       </div>
     );
   }
-  if (!cookieExists) {
+  if (!storageExists) {
     return (
       <div className={classes.root}>
         <Grid
