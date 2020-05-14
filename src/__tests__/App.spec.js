@@ -1,12 +1,15 @@
 import localStorage from 'localStorage';
 import localStorageObject from './localStorageObject';
+import App from '../App';
 
-const ls = JSON.parse(localStorage.getItem('groupy'));
-const userID = ls.userID;
+// localStorage is sync
+const gatherLocalStorage = () => {
+  return JSON.parse(localStorage.getItem('groupy'));
+}
 
-const App = require('../App')
-
-test('proper profile data is correct', () => {
+test('proper profile data is correct', async () => {
+  const ls = await gatherLocalStorage();
+  const userID = ls.userID;
   expect(ls).toMatchSnapshot();
   expect(userID).toEqual('5e62ade15014b544a50af943');
 });
