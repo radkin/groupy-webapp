@@ -53,9 +53,10 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0,
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: drawerWidth
   },
   drawerHeader: {
+    background: '#FDCC3E',
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
