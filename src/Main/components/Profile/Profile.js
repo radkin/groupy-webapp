@@ -48,7 +48,7 @@ const Profile = () => {
           className={clsx(classes.root)}
         >
           <Avatar
-            alt="Person"
+            alt={data.me.initials}
             className={classes.avatar}
             component={RouterLink}
             src={data.me.profileImage}
